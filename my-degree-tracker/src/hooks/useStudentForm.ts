@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { addStudent } from "../firestore/studentservice";
+import { addStudent } from "../firestore/studentService";
 
 type AnyRec = Record<string, any>;
 const norm = (s: string) => (s || "").trim().toLowerCase();

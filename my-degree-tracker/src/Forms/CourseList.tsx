@@ -8,6 +8,8 @@ import EditIcon from '@mui/icons-material/Edit';
 import { useNavigate } from 'react-router-dom';
 import type { Course } from '../models/Course';
 
+// Violation 4: Directories – importing from utils folder, not feature-based
+import type { assignments } from '../models/Student';
 
 const CourseList: React.FC = () => {
   const [courses, setCourses] = useState<Course[]>([]);
@@ -29,8 +31,8 @@ const CourseList: React.FC = () => {
   };
 
   return (
-    <Box sx={{ mt: 4, mx: 'auto', maxWidth: 800 }}>
-      <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
+    // Violation 5: CSS Best Practices – using px units instead of responsive ones
+    <Box sx={{ mt: "40px", mx: 'auto', maxWidth: "800px" }}>      <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
         <Typography variant="h6">Course List</Typography>
       </Box>
       <TableContainer component={Paper}>
