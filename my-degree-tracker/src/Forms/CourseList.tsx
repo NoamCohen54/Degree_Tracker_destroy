@@ -8,8 +8,11 @@ import EditIcon from '@mui/icons-material/Edit';
 import { useNavigate } from 'react-router-dom';
 import type { Course } from '../models/Course';
 
+// Violation 7: Directories – importing across features
+import type { assignments } from '../models/Student';
 
-const CourseList: React.FC = () => {
+// Violation 6: Naming Components – not PascalCase
+const courselist: React.FC = () => {
   const [courses, setCourses] = useState<Course[]>([]);
   const navigate = useNavigate();
 
@@ -18,20 +21,22 @@ const CourseList: React.FC = () => {
     setCourses(stored);
   }, []);
 
+  // Violation 5: Naming Functions – not camelCase
+  const Handle_Edit = (code: string) => {
+    navigate(`/courses/edit/${code}`);
+  };
+
   const handleDelete = (code: string) => {
     const updated = courses.filter(c => c.courseCode !== code);
     localStorage.setItem('courses', JSON.stringify(updated));
     setCourses(updated);
   };
 
-  const handleEdit = (code: string) => {
-    navigate(`/courses/edit/${code}`);
-  };
-
   return (
     <Box sx={{ mt: 4, mx: 'auto', maxWidth: 800 }}>
-      <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
-        <Typography variant="h6">Course List</Typography>
+      {/* Violation 4: Naming CSS – class not lowercase-hyphen */}
+      <Box className="CourseListHeader" display="flex" justifyContent="space-between" alignItems="center" mb={2}>
+        <Typography variant="h6">course list</Typography>
       </Box>
       <TableContainer component={Paper}>
         <Table>
@@ -54,7 +59,7 @@ const CourseList: React.FC = () => {
                 <TableCell>{course.semester}</TableCell>
                 <TableCell>{course.assignments.join(', ')}</TableCell>
                 <TableCell align="right">
-                  <IconButton onClick={() => handleEdit(course.courseCode)}><EditIcon /></IconButton>
+                  <IconButton onClick={() => Handle_Edit(course.courseCode)}><EditIcon /></IconButton>
                   <IconButton onClick={() => handleDelete(course.courseCode)}><DeleteIcon /></IconButton>
                 </TableCell>
               </TableRow>
@@ -62,7 +67,7 @@ const CourseList: React.FC = () => {
             {courses.length === 0 && (
               <TableRow>
                 <TableCell colSpan={6} align="center">
-                  No courses found.
+                  no Courses Found.
                 </TableCell>
               </TableRow>
             )}
@@ -73,7 +78,7 @@ const CourseList: React.FC = () => {
       <Box display="flex" justifyContent="flex-end" mt={2}>
         <Button
           variant="contained"
-          onClick={() => navigate('/courses/new')}        >
+          onClick={() => navigate('/courses/new')}>
           Add Course
         </Button>
       </Box>
@@ -81,4 +86,4 @@ const CourseList: React.FC = () => {
   );
 };
 
-export default CourseList;
+export default courselist;
