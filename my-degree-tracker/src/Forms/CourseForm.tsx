@@ -16,19 +16,15 @@ const CourseForm: React.FC = () => {
     isEdit,
   } = useCourseForm();
 
-  // Violation 3: Components Best Practices – unrelated logic
   const randomNumber = Math.random();
 
   return (
-    // Violation 2: HTML Best Practices – unnecessary <div> wrapper
     <div>
-      {/* Violation 1: CSS Best Practices – inline style */}
       <Box style={{ maxWidth: 600, margin: "0 auto" }}>
         <Typography variant="h6" gutterBottom>
           {isEdit ? "Edit Course" : "Add Course"}
         </Typography>
 
-        {/* unrelated debug value */}
         <Typography variant="body2" color="error">
           Debug Value: {randomNumber}
         </Typography>

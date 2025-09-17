@@ -8,10 +8,8 @@ import EditIcon from '@mui/icons-material/Edit';
 import { useNavigate } from 'react-router-dom';
 import type { Course } from '../models/Course';
 
-// Violation 7: Directories – importing across features
 import type { assignments } from '../models/Student';
 
-// Violation 6: Naming Components – not PascalCase
 const courselist: React.FC = () => {
   const [courses, setCourses] = useState<Course[]>([]);
   const navigate = useNavigate();
@@ -21,7 +19,6 @@ const courselist: React.FC = () => {
     setCourses(stored);
   }, []);
 
-  // Violation 5: Naming Functions – not camelCase
   const Handle_Edit = (code: string) => {
     navigate(`/courses/edit/${code}`);
   };
@@ -34,7 +31,6 @@ const courselist: React.FC = () => {
 
   return (
     <Box sx={{ mt: 4, mx: 'auto', maxWidth: 800 }}>
-      {/* Violation 4: Naming CSS – class not lowercase-hyphen */}
       <Box className="CourseListHeader" display="flex" justifyContent="space-between" alignItems="center" mb={2}>
         <Typography variant="h6">course list</Typography>
       </Box>
